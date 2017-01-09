@@ -125,4 +125,3 @@ c和私有模块（在最终项目中会压缩成一个c.min.css或c.min.js文�
 	<!-- build:js js/c.min.js-->
 	<script type="text/javascript" src="js/c.js"></script>
 	<!-- endbuild -->
-test
