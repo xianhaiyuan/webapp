@@ -47,50 +47,39 @@
 desktop和mobile的目录结构一样，以desktop为例
 
 	.
-	├── src
-	│   └── desktop
-	│       ├── css
-	│       │   └── fonts
-	│       │       ├── font
-	│       │       └── iconfont
-	│       ├── img
-	│       │   └── icon
-	│       ├── js
-	│       │   └── common
-	│       ├── sass
-	│       │   └── common
-	│       └── view
-	│       ├── index.html
-	├── dist
-	│   └── desktop
-	│       ├── css
-	│       │   ├── common
-	│       │   └── fonts
-	│       │       ├── font
-	│       │       └── iconfont
-	│       ├── img
-	│       │   └── icon
-	│       ├── js
-	│       │   └── common
-	│       └── view
-	│       ├── index.html
-	├── tmp
-	│   └── desktop
-	│       ├── css
-	│       │   ├── common
-	│       │   └── fonts
-	│       │       ├── font
-	│       │       └── iconfont
-	│       ├── img
-	│       │   └── icon
-	│       ├── js
-	│       │   └── common
-	│       └── view
-	│       ├── index.html
 	├── build.sh
 	├── gulpfile.js
 	├── package.json
 	├── README.md
+	└── src
+	    └── desktop
+	        ├── index.html
+	        ├── favicon.ico
+	        ├── css
+	        │   └── fonts
+	        │       ├── font
+	        │       │   └── font.eot
+	        │       └── iconfont
+	        │           └── iconfont.eot
+	        ├── img
+	        │   ├── 1.jpg
+	        │   └── icon
+	        │       ├── 1.jpg
+	        │       └── 2.jpg
+	        ├── js
+	        │   ├── common
+	        │   │   ├── a.js
+	        │   │   └── b.js
+	        │   └── index.js
+	        ├── sass
+	        │   ├── common
+	        │   │   ├── a.scss
+	        │   │   └── b.scss
+	        │   └── index.scss
+	        └── view
+	            └── a.html
+
+
 
 
 ####注意：
@@ -107,14 +96,14 @@ desktop和mobile的目录结构一样，以desktop为例
 css和js引入格式
 
 a和b为公共模块（在最终项目中将会压缩合成一个common.min.css或common.min.js文件
-c和私有模块（在最终项目中会压缩成一个c.min.css或c.min.js文件）
+index为私有模块（在最终项目中会压缩成一个index.min.css或index.min.js文件）
 
 	<!-- build:css css/common/common.min.css -->
 	<link rel="stylesheet" type="text/css" href="css/common/a.css">
 	<link rel="stylesheet" type="text/css" href="css/common/b.css">
 	<!-- endbuild -->
-	<!-- build:css css/c.min.css -->
-	<link rel="stylesheet" type="text/css" href="css/c.css">
+	<!-- build:css css/index.min.css -->
+	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<!-- endbuild -->
 
 
@@ -122,6 +111,6 @@ c和私有模块（在最终项目中会压缩成一个c.min.css或c.min.js文�
 	<script type="text/javascript" src="js/common/a.js"></script>
 	<script type="text/javascript" src="js/common/b.js"></script>
 	<!-- endbuild -->
-	<!-- build:js js/c.min.js-->
-	<script type="text/javascript" src="js/c.js"></script>
+	<!-- build:js js/index.min.js-->
+	<script type="text/javascript" src="js/index.js"></script>
 	<!-- endbuild -->

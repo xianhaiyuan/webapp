@@ -121,10 +121,9 @@ var all_task = {
     fonttask(pretask + '-font:dev', presrc + 'css/fonts/font/*', predest + 'css/fonts/font');
     fonttask(pretask + '-iconfont:dev', presrc + 'css/fonts/iconfont/*', predest + 'css/fonts/iconfont');
     imgtask.dev(pretask + '-img:dev', presrc + 'img/*', predest + 'img/');
-    imgtask.build(pretask + '-img:build', presrc + 'img/*', predest + '/img');
-    imgtask.build(pretask + '-icon:build', presrc + 'img/icon/*', predest + '/img/icon');
-    csstask.dev(pretask + '-css:dev', presrc + 'sass/*.scss', predest + 'css', '../img/icon/spriter.png');
-    csstask.dev(pretask + '-css_com:dev', presrc + 'sass/common/*.scss', predest + 'css/common', '../../img/icon/spriter.png');
+    imgtask.dev(pretask + '-ico:dev', presrc + '*.ico', predest);
+    csstask.dev(pretask + '-css:dev', presrc + 'sass/*.scss', predest + 'css', predest, '../img/icon/spriter.png');
+    csstask.dev(pretask + '-css_com:dev', presrc + 'sass/common/*.scss', predest + 'css/common', predest, '../../img/icon/spriter.png');
     jstask.dev(pretask + '-js:dev', presrc + 'js/*', predest + 'js');
     jstask.dev(pretask + '-js_com:dev', presrc + 'js/common/*', predest + 'js/common');
   },
@@ -135,6 +134,7 @@ var all_task = {
     fonttask(pretask + '-iconfont:build', presrc + 'css/fonts/iconfont/*', predest + 'css/fonts/iconfont');
     imgtask.build(pretask + '-img:build', presrc + 'img/*', predest + '/img');
     imgtask.build(pretask + '-icon:build', presrc + 'img/icon/*', predest + '/img/icon');
+    imgtask.build(pretask + '-ico:build', presrc + '*.ico', predest);
   }
 }
 
@@ -161,7 +161,7 @@ var imgtask = {
 };
 
 var csstask = {
-  dev: function(taskname, srcpath, destpath, spritePath){
+  dev: function(taskname, srcpath, destpath, spritePre, spriteDest){
     return gulp.task(taskname, function(){
       return gulp.src(srcpath)
       .pipe($.cached())
@@ -173,8 +173,8 @@ var csstask = {
       .pipe($.csslint())
       .pipe($.csslint.formatter())
       .pipe($.cssSpriter({
-        'spriteSheet': mtmp + 'img/icon/spriter.png',
-        'pathToSpriteSheetFromCSS': spritePath
+        'spriteSheet': spritePre + 'img/icon/spriter.png',
+        'pathToSpriteSheetFromCSS': spriteDest
       }))
       .pipe(gulp.dest(destpath))
       .pipe($.notify('csstask success'))
@@ -236,7 +236,8 @@ var server = function(pretask, server, predir){
          pretask + '-js:dev',
          pretask + '-js_com:dev',
          pretask + '-font:dev',
-         pretask + '-iconfont:dev'
+         pretask + '-iconfont:dev',
+         pretask + '-ico:dev'
       ], function(){
       browserSync.init({
         server: server,
@@ -244,6 +245,7 @@ var server = function(pretask, server, predir){
         notify: true
       });
       gulp.watch(predir + 'img/*', [pretask + '-img:dev']);
+      gulp.watch(predir + '*.ico', [pretask + '-ico:dev']);
       gulp.watch(predir + 'sass/*', [pretask + '-css:dev']);
       gulp.watch(predir + 'sass/common/*', [pretask + '-css_com:dev']);
       gulp.watch(predir + 'js/*', [pretask + '-js:dev']);
@@ -270,7 +272,8 @@ var build = function(pretask){
         pretask +'-html_index:build',
         pretask +'-html_view:build', 
         pretask + '-font:build', 
-        pretask + '-iconfont:build'
+        pretask + '-iconfont:build',
+        pretask + '-ico:build'
        ]));
 }
 
