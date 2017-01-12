@@ -76,18 +76,6 @@ var htmltask = {
          /\{\{[\s\S]*?\}\}/g
         ]
       };
-      // <!-- build:css ../style/css/test.min.css -->
-      // <!-- endbuild -->
-
-      // <!-- build:css ../style/css/common.min.css -->
-      // <!-- endbuild -->
-
-      // <!-- build:js ../js/test.min.js-->
-      // <!-- endbuild -->
-      
-      // <!-- build:js ../js/common.min.js-->
-      // <!-- endbuild -->
-
       return gulp.src(srcpath)
       .pipe($.useref())
       .pipe($.if('*.css', $.cssnano({
@@ -113,31 +101,6 @@ var fonttask = function(taskname, srcpath, destpath){
     .pipe(reload({stream:true}));
   })
 };
-
-var all_task = {
-  dev: function(pretask, presrc, predest){
-    htmltask.dev(pretask + '-html_view:dev', presrc + 'view/*', predest + 'view');
-    htmltask.dev(pretask + '-html_index:dev', presrc + '/*.html', predest);
-    fonttask(pretask + '-font:dev', presrc + 'css/fonts/font/*', predest + 'css/fonts/font');
-    fonttask(pretask + '-iconfont:dev', presrc + 'css/fonts/iconfont/*', predest + 'css/fonts/iconfont');
-    imgtask.dev(pretask + '-img:dev', presrc + 'img/*', predest + 'img/');
-    imgtask.dev(pretask + '-ico:dev', presrc + '*.ico', predest);
-    csstask.dev(pretask + '-css:dev', presrc + 'sass/*.scss', predest + 'css', predest, '../img/icon/spriter.png');
-    csstask.dev(pretask + '-css_com:dev', presrc + 'sass/common/*.scss', predest + 'css/common', predest, '../../img/icon/spriter.png');
-    jstask.dev(pretask + '-js:dev', presrc + 'js/*', predest + 'js');
-    jstask.dev(pretask + '-js_com:dev', presrc + 'js/common/*', predest + 'js/common');
-  },
-  build: function(pretask, presrc, predest){
-    htmltask.build(pretask + '-html_view:build', presrc + 'view/*', predest + 'view');
-    htmltask.build(pretask + '-html_index:build', presrc + '*.html', predest);
-    fonttask(pretask + '-font:build', presrc + 'css/fonts/font/*', predest + 'css/fonts/font');
-    fonttask(pretask + '-iconfont:build', presrc + 'css/fonts/iconfont/*', predest + 'css/fonts/iconfont');
-    imgtask.build(pretask + '-img:build', presrc + 'img/*', predest + '/img');
-    imgtask.build(pretask + '-icon:build', presrc + 'img/icon/*', predest + '/img/icon');
-    imgtask.build(pretask + '-ico:build', presrc + '*.ico', predest);
-  }
-}
-
 
 var imgtask = {
   dev: function(taskname, srcpath, destpath){
@@ -218,6 +181,30 @@ var jstask = {
     });
   }
 };
+
+var all_task = {
+  dev: function(pretask, presrc, predest){
+    htmltask.dev(pretask + '-html_view:dev', presrc + 'view/*', predest + 'view');
+    htmltask.dev(pretask + '-html_index:dev', presrc + '/*.html', predest);
+    fonttask(pretask + '-font:dev', presrc + 'css/fonts/font/*', predest + 'css/fonts/font');
+    fonttask(pretask + '-iconfont:dev', presrc + 'css/fonts/iconfont/*', predest + 'css/fonts/iconfont');
+    imgtask.dev(pretask + '-img:dev', presrc + 'img/*', predest + 'img/');
+    imgtask.dev(pretask + '-ico:dev', presrc + '*.ico', predest);
+    csstask.dev(pretask + '-css:dev', presrc + 'sass/*.scss', predest + 'css', predest, '../img/icon/spriter.png');
+    csstask.dev(pretask + '-css_com:dev', presrc + 'sass/common/*.scss', predest + 'css/common', predest, '../../img/icon/spriter.png');
+    jstask.dev(pretask + '-js:dev', presrc + 'js/*', predest + 'js');
+    jstask.dev(pretask + '-js_com:dev', presrc + 'js/common/*', predest + 'js/common');
+  },
+  build: function(pretask, presrc, predest){
+    htmltask.build(pretask + '-html_view:build', presrc + 'view/*', predest + 'view');
+    htmltask.build(pretask + '-html_index:build', presrc + '*.html', predest);
+    fonttask(pretask + '-font:build', presrc + 'css/fonts/font/*', predest + 'css/fonts/font');
+    fonttask(pretask + '-iconfont:build', presrc + 'css/fonts/iconfont/*', predest + 'css/fonts/iconfont');
+    imgtask.build(pretask + '-img:build', presrc + 'img/*', predest + '/img');
+    imgtask.build(pretask + '-icon:build', presrc + 'img/icon/*', predest + '/img/icon');
+    imgtask.build(pretask + '-ico:build', presrc + '*.ico', predest);
+  }
+}
 
 var server = function(pretask, server, predir){
   if (pretask === 'm') {
