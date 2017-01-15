@@ -71,7 +71,7 @@ desktop和mobile的目录结构一样，以desktop为例
 	        │   │   ├── a.js
 	        │   │   └── b.js
 	        │   └── index.js
-	        ├── sass
+	        ├── scss
 	        │   ├── common
 	        │   │   ├── a.scss
 	        │   │   └── b.scss

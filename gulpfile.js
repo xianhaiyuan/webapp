@@ -10,7 +10,7 @@ var del = require('del');
 
 var processors = [
     autoprefixer({
-      browsers: ['>1%', 'last 2 version', 'ie 6-11']
+      browsers: ['>1%', 'last 15 version', 'ie 8', 'ie 7']
     }),
     cssgrace
 ];
@@ -190,8 +190,8 @@ var all_task = {
     fonttask(pretask + '-iconfont:dev', presrc + 'css/fonts/iconfont/*', predest + 'css/fonts/iconfont');
     imgtask.dev(pretask + '-img:dev', presrc + 'img/*', predest + 'img/');
     imgtask.dev(pretask + '-ico:dev', presrc + '*.ico', predest);
-    csstask.dev(pretask + '-css:dev', presrc + 'sass/*.scss', predest + 'css', predest, '../img/icon/spriter.png');
-    csstask.dev(pretask + '-css_com:dev', presrc + 'sass/common/*.scss', predest + 'css/common', predest, '../../img/icon/spriter.png');
+    csstask.dev(pretask + '-css:dev', presrc + 'scss/*.scss', predest + 'css', predest, '../img/icon/spriter.png');
+    csstask.dev(pretask + '-css_com:dev', presrc + 'scss/common/*.scss', predest + 'css/common', predest, '../../img/icon/spriter.png');
     jstask.dev(pretask + '-js:dev', presrc + 'js/*', predest + 'js');
     jstask.dev(pretask + '-js_com:dev', presrc + 'js/common/*', predest + 'js/common');
   },
@@ -233,8 +233,8 @@ var server = function(pretask, server, predir){
       });
       gulp.watch(predir + 'img/*', [pretask + '-img:dev']);
       gulp.watch(predir + '*.ico', [pretask + '-ico:dev']);
-      gulp.watch(predir + 'sass/*', [pretask + '-css:dev']);
-      gulp.watch(predir + 'sass/common/*', [pretask + '-css_com:dev']);
+      gulp.watch(predir + 'scss/*', [pretask + '-css:dev']);
+      gulp.watch(predir + 'scss/common/*', [pretask + '-css_com:dev']);
       gulp.watch(predir + 'js/*', [pretask + '-js:dev']);
       gulp.watch(predir + 'js/common/*', [pretask + '-js_com:dev']);
       gulp.watch(predir + 'view/*', [pretask + '-html_view:dev']);
