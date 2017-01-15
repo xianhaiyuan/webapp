@@ -108,7 +108,6 @@ var imgtask = {
       return gulp.src(srcpath)
       .pipe($.cached())
       .pipe($.plumber(errorHandler))
-      .pipe($.imagemin())
       .pipe(gulp.dest(destpath))
       .pipe($.notify('imgtask success'))
       .pipe(reload({stream:true}));
@@ -117,6 +116,7 @@ var imgtask = {
   build: function(taskname, srcpath, destpath){
     return gulp.task(taskname, function(){
       return gulp.src(srcpath)
+      .pipe($.imagemin())
       .pipe(gulp.dest(destpath))
       .pipe($.notify('imgtask success'));
     });
