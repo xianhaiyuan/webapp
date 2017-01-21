@@ -9,7 +9,6 @@
 
 ####2.2安装依赖
 
-	npm install gulp
 	npm install
 	
 ####2.3启动项目
