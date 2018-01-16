@@ -1,17 +1,17 @@
-#A Webapp Template
-###1. 环境
+# A Webapp Template
+### 1. 环境
 - nodejs
 
-###2. 运行
-####2.1克隆项目
+### 2. 运行
+#### 2.1克隆项目
 
 	git clone https://github.com/xianhaiyuan/webapp.git
 
-####2.2安装依赖
+#### 2.2安装依赖
 
 	npm install
 	
-####2.3启动项目
+#### 2.3启动项目
 
  开发pc端项目
 
@@ -41,7 +41,7 @@
 	运行：
 	./build
 	
-###3. 目录
+### 3. 目录
 
 desktop和mobile的目录结构一样，以desktop为例
 
@@ -81,7 +81,7 @@ desktop和mobile的目录结构一样，以desktop为例
 
 
 
-####注意：
+#### 注意：
 
 - view目录放html文件
 - src/css下不放css文件，只放font和iconfont（用sass做预处理器）
